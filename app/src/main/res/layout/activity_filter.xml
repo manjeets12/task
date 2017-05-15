@@ -75,6 +75,7 @@
         android:padding="16dp"
         android:paddingTop="0dp"
         android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginBottom="?attr/actionBarSize"
         android:background="@color/darkBackGround">
 
         <LinearLayout
@@ -364,9 +365,12 @@
     <Button
         android:id="@+id/btn_applyFilter"
         android:text="Apply"
+        android:layout_gravity="bottom"
         android:layout_height="?actionBarSize"
         android:layout_width="match_parent"
         android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#FFFFFF"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
+        />
 
 </android.support.design.widget.CoordinatorLayout>

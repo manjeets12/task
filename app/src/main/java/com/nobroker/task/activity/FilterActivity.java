@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -18,11 +19,23 @@ import com.nobroker.task.R;
 import java.util.ArrayList;
 
 import static android.R.attr.id;
+import static android.R.attr.type;
 import static android.R.attr.value;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
 
 public class FilterActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = MainActivity.class.getSimpleName(); //for logcat;
+
     private final static int REFRESH_BUTTON_ID = R.id.btn_refresh;
     private final static int CLOSE_FILTER_BUTTON_ID =R.id.btn_closeFilter;
+    private final static int CLOSE_APPLY_BUTTON_ID =R.id.btn_applyFilter;
     private final static int sdk = android.os.Build.VERSION.SDK_INT;
     private Context mContext;
     private int[] btn_ids =
@@ -36,6 +49,7 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
             };
     private ArrayList<Integer> mSelectedIds;
     private ImageButton refrshButton, closeFilterButton;
+    private Button applyFilterButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +72,11 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
             Button button =(Button) findViewById(btn_ids[i]);
             button.setOnClickListener(this);
         }
+        applyFilterButton = (Button)findViewById(CLOSE_APPLY_BUTTON_ID);
         refrshButton = (ImageButton)findViewById(REFRESH_BUTTON_ID);
         closeFilterButton =(ImageButton)findViewById(CLOSE_FILTER_BUTTON_ID);
+
+        applyFilterButton.setOnClickListener(this);
         refrshButton.setOnClickListener(this);
         closeFilterButton.setOnClickListener(this);
     }
@@ -72,7 +89,10 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case CLOSE_FILTER_BUTTON_ID:
                 //NavUtils.navigateUpFromSameTask(this);
-                sendResultForFilter();
+                sendResultForFilter("close");
+                break;
+            case CLOSE_APPLY_BUTTON_ID:
+                sendResultForFilter("apply");
                 break;
             default:
                 Button clickedBtn = (Button) findViewById(v.getId());
@@ -126,9 +146,46 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
         clickedBtn.setTextColor(ContextCompat.getColor(mContext, BACKGROUND_COLOR));
     }
 
-    public void sendResultForFilter(){
+    public void sendResultForFilter(String action){
         Intent intent = getIntent();
-        intent.putExtra("key", value);
+        if(action!="close" && mSelectedIds.size() != 0){
+            //ArrayList<String> type = new ArrayList<String>();
+            //ArrayList<String> buildingType = new ArrayList<String>();
+            //ArrayList<String> furnishing = new ArrayList<String>();
+            String type =null, buildingType=null,furnishing=null;
+           for(int id:mSelectedIds){
+               String id_name = getResources().getResourceEntryName(id);
+               String [] parts = id_name.split("_");
+               switch (parts[1]){
+                   case "type":
+                       type = "/"+parts[2];
+                       break;
+                   case "buildingType":
+                       buildingType = "/"+parts[2];
+                       break;
+                   case "furnishing":
+                       furnishing = "/"+parts[2]+"_"+parts[3];
+                       break;
+                   default:
+                       break;
+               }
+           }
+            if(type !=null){
+                intent.putExtra("type",type.substring(1));
+            }
+            if(buildingType !=null){
+                intent.putExtra("buildingType",buildingType.substring(1));
+            }
+            if(furnishing !=null){
+                intent.putExtra("furnishing",furnishing.substring(1));
+            }
+            intent.putExtra("noFilter", false);
+
+        }else{
+            intent.putExtra("noFilter", true);
+        }
+
+
         setResult(RESULT_OK, intent);
         finish();
     }

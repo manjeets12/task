@@ -22,11 +22,108 @@ import com.nobroker.task.modal.ProjectResponse;
 import com.nobroker.task.rest.ApiClient;
 import com.nobroker.task.rest.ApiInterface;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.R.attr.data;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
+import static android.app.Activity.RESULT_OK;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName(); //for logcat;
@@ -41,6 +138,9 @@ public class MainActivity extends AppCompatActivity {
     private EndlessRecyclerViewScrollListener mScrollListener;   // reference for endless scrolling https://guides.codepath.com/android/Endless-Scrolling-with-AdapterViews-and-RecyclerView
 
     private Boolean mRefreshing;
+
+    private  Map<String, String> mData;
+    private String lat_lang, rent, travelTime, type =null, buildingType=null, furnishing=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         mContext = this;
         mRefreshing= false; // for pull to referesh;
         mApiService = ApiClient.getClient().create(ApiInterface.class);
+        mData = new HashMap<>();
         mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
         mRecyclerView = (RecyclerView) findViewById(R.id.project_recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -95,18 +196,34 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // Check which request we're responding to
-        if (requestCode == FILTER_REQUEST_CODE) {
-            // Make sure the request was successful
-            if (resultCode == RESULT_OK) {
-
+        if (requestCode == FILTER_REQUEST_CODE && resultCode == RESULT_OK) {
+            if(!data.getBooleanExtra("noFilter",true)){
+                type = data.getStringExtra("type");
+                buildingType = data.getStringExtra("buildingType");
+                furnishing = data.getStringExtra("furnishing");
+                if(type !=null){
+                    mData.put("type",type);
+                }
+                if(buildingType !=null){
+                    mData.put("buildingType",buildingType);
+                }
+                if(furnishing !=null){
+                    mData.put("furnishing",furnishing);
+                }
+                mAdapter.clear();
+                loadProjectsApi(1);
             }
         }
     }
 
     private void loadProjectsApi(final int page) {
-        String lat_lang ="12.9279232,77.6271078";
-        String rent = "0,500000";
-        String travelTime ="30";
+        lat_lang ="12.9279232,77.6271078";
+        rent = "0,500000";
+        travelTime ="30";
+        mData.put("lat_lang",lat_lang);
+        mData.put("rent",rent);
+        mData.put("travelTime",travelTime);
+        mData.put("page", String.valueOf(page));
         //String pageNo="1";
         if(page==1 && !mRefreshing){
             mProgressDialog = new ProgressDialog(mContext);
@@ -117,7 +234,8 @@ public class MainActivity extends AppCompatActivity {
             mProgressDialog.setCancelable(false);
             mProgressDialog.show();
         }
-        Call<ProjectResponse> call = mApiService.getProjectList(lat_lang, rent, travelTime, page);
+
+        Call<ProjectResponse> call = mApiService.getProjectList(mData);
         call.enqueue(new Callback<ProjectResponse>() {
             @Override
             public void onResponse(Call<ProjectResponse> call, Response<ProjectResponse> response) {
@@ -142,6 +260,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ProjectResponse> call, Throwable t) {
                 // Log error here since request failed
+                if (mProgressDialog.isShowing()) {
+                    mProgressDialog.dismiss();
+                }
                 Log.e(TAG, t.toString());
             }
         });
