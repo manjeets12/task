@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Task</string>
+    <string name="area_text">Built up area</string>
+    <string name="apartment_type">Apartment Type</string>
+    <string name="property_type">Property Type</string>
+    <string name="lease_text">Lease</string>
+    <string name="order_by">Order By</string>
+    <string name="furnished_text">Furnished</string>
+    <string name="photos_preference">Photos Preference</string>
+    <string name="preferred_tenants">Preferred Tenants</string>
+    <string name="amenities">Amenities</string>
+    <string name="parking">Parking</string>
+    <string name="bathroom">Bathroom</string>
+</resources>

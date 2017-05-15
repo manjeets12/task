@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nobroker.task.activity.FilterActivity">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:layout_collapseMode="pin">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- This is a custom left side button -->
+
+            <ImageButton
+                android:id="@+id/btn_refresh"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="start|center_vertical"
+                android:src="@drawable/ic_refresh"
+                style="@style/Widget.AppCompat.ActionButton" />
+
+            <!-- This is a centered logo -->
+            <!--
+            <ImageView
+                android:id="@+id/refresh_filter"
+                android:src="@drawable/ic_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="?attr/actionBarSize"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_gravity="center" />
+                -->
+
+            <!-- This is a centered title -->
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:text="@string/app_name"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
+                />
+            <!-- This is a custom right side button -->
+
+            <ImageButton
+                android:id="@+id/btn_closeFilter"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_cross_white"
+                android:layout_marginRight="16dp"
+                style="@style/Widget.AppCompat.ActionButton" />
+        </FrameLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:paddingTop="0dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@color/darkBackGround">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:text="@string/apartment_type"/>
+
+            <org.apmem.tools.layouts.FlowLayout
+                android:id="@+id/fl_apartmentType"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <Button
+                    android:id="@+id/btn_type_RK1"
+                    android:text="1 RK"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"
+                    />
+
+                <Button
+                    android:id="@+id/btn_type_BHK1"
+                    android:text="1 BHK"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+
+                <Button
+                    android:id="@+id/btn_type_BHK2"
+                    android:text="2 BHK"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+
+                <Button
+                    android:id="@+id/btn_type_BHK3"
+                    android:text="3 BHK"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_type_BHK4"
+                    android:text="4 BHK"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_type_BHK5"
+                    android:text="4+ BHK"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+
+            </org.apmem.tools.layouts.FlowLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/property_type"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textAppearance="@android:style/TextAppearance.Small"/>
+
+            <org.apmem.tools.layouts.FlowLayout
+                android:id="@+id/fl_propertyType"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_buildingType_AP"
+                    android:text="Apartment"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_buildingType_IH"
+                    android:text="Independent House/Villa"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_buildingType_IF"
+                    android:text="Independent Floor/Builder Floor"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+            </org.apmem.tools.layouts.FlowLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:text="@string/lease_text"/>
+            <Button
+                android:id="@+id/btn_leaseOnly"
+                android:text="Lease Only"
+                style="@style/Widget.Button.Transparent"
+                android:background="@drawable/border_dark"
+                android:textColor="#90989b"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:text="@string/order_by"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:text="@string/furnished_text"/>
+            <org.apmem.tools.layouts.FlowLayout
+                android:id="@+id/fl_furnishingType"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_furnishing_FULLY_FURNISHED"
+                    android:text="Full"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_furnishing_SEMI_FURNISHED"
+                    android:text="Semi"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_furnishing_NOT_FURNISHED"
+                    android:text="Not Furnished"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+            </org.apmem.tools.layouts.FlowLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:text="@string/photos_preference"/>
+            <org.apmem.tools.layouts.FlowLayout
+                android:id="@+id/fl_photosPreference"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_withPhotos"
+                    android:text="With photos"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_All"
+                    android:text="All"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+            </org.apmem.tools.layouts.FlowLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:text="@string/preferred_tenants"/>
+            <org.apmem.tools.layouts.FlowLayout
+                android:id="@+id/fl_tenantsPreference"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_tenantsType_FAMILY"
+                    android:text="Family"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_tenantsType_BACHELOR"
+                    android:text="Bachelor"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_tenantsType_COMPANY"
+                    android:text="Company"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_tenantsType_DOESNOTMATTER"
+                    android:text="Does not matter"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+            </org.apmem.tools.layouts.FlowLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:text="@string/parking"/>
+
+            <org.apmem.tools.layouts.FlowLayout
+                android:id="@+id/fl_parking"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_parking_TWOWHEELER"
+                    android:text="Two wheeler"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_parking_FOURWHEELER"
+                    android:text="Four wheeler"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+            </org.apmem.tools.layouts.FlowLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:text="@string/amenities"/>
+            <org.apmem.tools.layouts.FlowLayout
+                android:id="@+id/fl_amenities"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_gym"
+                    android:text="Gym"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_swimmingPool"
+                    android:text="Swimming pool"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_lift"
+                    android:text="Lift"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+            </org.apmem.tools.layouts.FlowLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:text="@string/bathroom"/>
+
+            <org.apmem.tools.layouts.FlowLayout
+                android:id="@+id/fl_bathroom"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_onePlus"
+                    android:text="1+"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_twoPlus"
+                    android:text="2+"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+                <Button
+                    android:id="@+id/btn_threePlus"
+                    android:text="3+"
+                    style="@style/Widget.Button.Transparent"
+                    android:background="@drawable/border_dark"
+                    android:textColor="#90989b"/>
+            </org.apmem.tools.layouts.FlowLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+    <Button
+        android:id="@+id/btn_applyFilter"
+        android:text="Apply"
+        android:layout_height="?actionBarSize"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFFFFF"/>
+
+</android.support.design.widget.CoordinatorLayout>
